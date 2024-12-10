@@ -1,0 +1,92 @@
+
+import random
+
+class player():
+    healthpoints = 100
+    goldamount = 10
+    num_monsters_killed = 0
+    num_turns_alive = 0
+    def __init__ (self, healthpoints, goldamount, num_monsters_killed, num_turns_alive):
+        self.attacktype = "no attack"
+        self.damageamount = 0
+        self.race = "no race"
+        self.health = healthpoints
+        self.gold = goldamount
+        self.monsterkills = num_monsters_killed
+        self.lifetime = num_turns_alive
+    
+    def move(self):
+        fiftychance = random.randint(1,2)
+        thirtythreechance = random.randint(1,3)
+        if fiftychance == 1:
+            if thirtythreechance == 1:
+                print('we encountered a monster!')
+            if thirtythreechance == 2:
+                goldinchest = random.randint(1,6)
+                print('treasure chest found with', goldinchest, 'gold pieces')
+                self.gold = self.gold+goldinchest
+            if thirtythreechance == 3:
+                healthinchest = random.randint(1,6)
+                print('treasure chest found with a health potion', healthinchest, 'health gained')
+                self.health = self.health+healthinchest
+        if fiftychance == 2:
+            print('nothing encountered, we have a chance to rest')
+            self.health == self.health+1
+        
+        print('here are your current stats in the order of: ')
+        print('amount of health, amount of gold, number of monsters killed, and number of turns alive')
+        print(self.health, self.gold, self.monsterkills, self.lifetime)
+
+class dwarf(player):
+    def __init__(self):
+        self.attacktype = "axe strike"
+        self.damageamount = random.randint(1,4)
+        self.race = "dwarf"
+
+class wizard(player):
+    def __init__(self):
+        self.attacktype = "cast spell"
+        self.damageamount = random.randint(1,8)
+        self.race = "wizard"
+
+class monster():
+    def __init__(self):
+        self.damage = 0
+        self.attacktype = "no attack"
+        self.race = 'no race'
+
+    def attack(self):
+        print(self.race, 'has been encountered')
+        print('monster used its attack', self.attacktype)
+        print ('it did damage', self.damage)
+        return self.damage
+
+class giant(monster):
+    def __init__(self):
+        self.damage = 8
+        self.attacktype = "big swing"
+        self.race = 'giant'
+
+class troll(monster):
+    def __init__(self):
+        self.damage = 12
+        self.attacktype = "vomit"
+        self.race = 'troll'
+
+class goblintemplate(monster):
+    def __init__(self):
+        self.damage = 0
+        self.attacktype = "goblin attack of some sort"
+        self.race = 'goblin of some sort'
+
+class littlegoblin(goblintemplate):
+    def __init__(self):
+        self.damage = 4
+        self.attacktype = "nibble"
+        self.race = 'little goblin'
+
+
+#main loop
+while(True):
+    #call move with the player changing each time
+    dwarf.move(player)
