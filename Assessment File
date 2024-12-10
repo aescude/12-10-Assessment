@@ -89,4 +89,5 @@ class littlegoblin(goblintemplate):
 #main loop
 while(True):
     #call move with the player changing each time
+    #testing
     dwarf.move(player)
